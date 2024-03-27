@@ -30,6 +30,7 @@ def home(request,response):
         "productos.html", context={"title": "Pagina Principal", "user": "PRODUCTOS"})
     
     #trsfsdfsdfs
+    #Bauti colo puto
      
 
 
