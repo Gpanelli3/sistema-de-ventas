@@ -29,7 +29,8 @@ def home(request,response):
      response.text= app.template(
         "productos.html", context={"title": "Pagina Principal", "user": "PRODUCTOS"})
     
-    
+    #trsfsdfsdfs
+     
 
 
 
