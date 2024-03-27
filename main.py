@@ -20,6 +20,15 @@ def home(request,response):
 
     response.text= app.template(
         "home.html", context={"title": "Pagina Principal", "user": "a nuestra pagina de productos", "producto":productos})
+    
+
+
+
+
+
+
+    #gena
+    
 
 
 
