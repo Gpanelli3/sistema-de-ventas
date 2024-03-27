@@ -3,7 +3,7 @@ from jinja2 import environment
 from app import Wsgiclass
 
 app=Wsgiclass()
-
+#waitress-serve --listen=*:8000 main:app
 @app.ruta("/home")
 def home(request,response):
     conexion= mysql.connector.connect(host='localhost',
