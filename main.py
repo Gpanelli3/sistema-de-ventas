@@ -22,12 +22,13 @@ def home(request,response):
         "home.html", context={"title": "Pagina Principal", "user": "a nuestra pagina de productos", "producto":productos})
     
 
+    
+@app.ruta("/productos")
+def home(request,response):
 
-
-
-
-
-    #gena
+     response.text= app.template(
+        "productos.html", context={"title": "Pagina Principal", "user": "PRODUCTOS"})
+    
     
 
 
