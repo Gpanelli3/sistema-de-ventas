@@ -28,11 +28,10 @@ def home(request,response):
 
      response.text= app.template(
         "productos.html", context={"title": "Pagina Principal", "user": "PRODUCTOS"})
-    
-    #trsfsdfsdfs
-    #Bauti colo puto
-     
+   
 
 
-
-
+@app.ruta("/ingresoProd")
+def ingresoProd(request,response):
+    response.text= app.template(
+        "ingresoProd.html", context={"title": "Ingresar productos al stock","user": "INGRESAR PRODUCTOS"})
