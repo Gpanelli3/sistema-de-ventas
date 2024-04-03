@@ -17,13 +17,13 @@ def home(request,response):
     cursor.execute("select producto.idProducto,producto.nombre,producto.descripcion,categorias.nombre,producto.cantidad,producto.precio from producto inner join categorias on categorias.idcategorias=id_cat_corresp")
 
     productos=[]
-    cont=0
+    #cont=0
     for i in cursor:
         productos.append(i)
         cont+=1
     conexion.close()
-    print(productos)
-    print(cont)
+    #print(productos)
+    #print(cont)
   
 
 
@@ -34,18 +34,6 @@ def home(request,response):
 
 @app.ruta("/ingresoProd")
 def ingresoProd(request,response):
-    #conexion para traer la cantidad de productos
-    conexion2= mysql.connector.connect(host='localhost',
-                                  user='genaro',
-                                  passwd='password',
-                                  database='sistema-ventas')
-    cursor2=conexion2.cursor()
-    cursor2.execute("select producto.idProducto,producto.nombre,producto.descripcion,categorias.nombre,producto.cantidad,producto.precio FROM producto inner join categorias on categorias.idcategorias=id_cat_corresp")
-    cont=0
-    for i in cursor2:
-        cont+=1
-    print(cont)
-    conexion2.close()
 
 
     #conexion para insertar productos
@@ -68,6 +56,8 @@ def ingresoProd(request,response):
     nombreMax=nombre.upper()
 
     try:
+        while not nombre:
+            print("no ingreso nombre del producto")
         
         sql="INSERT INTO producto(nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s)"
         datos=(nombreMax,descripcion,precio,cantidad,categoria,imagen)
@@ -76,17 +66,19 @@ def ingresoProd(request,response):
         cursor.execute(sql,datos)
         conexion.commit()
 
-
     except mysql.connector.Error as error:
-        print("error al actualizar en la base de datos", error)
+        response.text=app.template(
+            "error.html", context={"user": "ERROR EN LA BASE DE DATOS"}
+        )
 
-        conexion.close()
-
-    
+    conexion.close()
 
 
     response.text= app.template(
         "ingresoProd.html", context={"user": "PRODUCTOS INGRESADOS CORRECTAMENTE"})
+
+    
+
     
 
 
