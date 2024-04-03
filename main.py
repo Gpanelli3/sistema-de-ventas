@@ -42,7 +42,7 @@ def ingresoProd(request,response):
                                   database='sistema-ventas')
     cursor2=conexion2.cursor()
     cursor2.execute("select producto.idProducto,producto.nombre,producto.descripcion,categorias.nombre,producto.cantidad,producto.precio FROM producto inner join categorias on categorias.idcategorias=id_cat_corresp")
-    cont=1
+    cont=0
     for i in cursor2:
         cont+=1
     print(cont)
@@ -63,10 +63,13 @@ def ingresoProd(request,response):
     precio=request.POST.get('precio')
     cantidad=request.POST.get('cantidad')
     categoria=request.POST.get('categoria')
+    imagen=request.POST.get('imagen')
 
     try:
-        sql="INSERT INTO producto(idProducto,nombre,descripcion,precio,cantidad,id_cat_corresp) VALUES(%s,%s,%s,%s,%s,%s)"
-        datos=(idp,nombre,descripcion,precio,cantidad,categoria)
+        
+        sql="INSERT INTO producto(idProducto,nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s,%s)"
+        datos=(idp,nombre,descripcion,precio,cantidad,categoria,imagen)
+            
         
         cursor.execute(sql,datos)
         conexion.commit()
@@ -75,8 +78,8 @@ def ingresoProd(request,response):
     except mysql.connector.Error as error:
         print("error al actualizar en la base de datos", error)
 
+        conexion.close()
 
-    conexion.close()
     
 
 
