@@ -32,7 +32,6 @@ def home(request,response):
     
    
 
-
 @app.ruta("/ingresoProd")
 def ingresoProd(request,response):
     #conexion para traer la cantidad de productos
@@ -57,7 +56,7 @@ def ingresoProd(request,response):
     
     cursor=conexion.cursor()
     
-    idp=cont+1
+    #idp=cont+1
     nombre=request.POST.get('nombre')
     descripcion=request.POST.get('descripcion')
     precio=request.POST.get('precio')
@@ -65,10 +64,13 @@ def ingresoProd(request,response):
     categoria=request.POST.get('categoria')
     imagen=request.POST.get('imagen')
 
+    nombreMax=""
+    nombreMax=nombre.upper()
+
     try:
         
-        sql="INSERT INTO producto(idProducto,nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s,%s)"
-        datos=(idp,nombre,descripcion,precio,cantidad,categoria,imagen)
+        sql="INSERT INTO producto(nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s)"
+        datos=(nombreMax,descripcion,precio,cantidad,categoria,imagen)
             
         
         cursor.execute(sql,datos)

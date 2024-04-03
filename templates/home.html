@@ -1,95 +1,159 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        body {
+            background-color: #e9e6ac; /* Color de fondo */
+            font-family: Arial, sans-serif; /* Fuente del texto */
+        }
+        .navbar-brand {
+            background-image: url('img/dialogo.png'); /* Ruta a la imagen del logo */
+            background-repeat: no-repeat; /* No se repite la imagen */
+            background-size: contain; /* La imagen se ajusta al tamaño del contenedor */
+            background-position: center; /* La imagen se posiciona centrada */
+            height: 50px; /* Altura del área del logo */
+            width: 150px; /* Anchura del área del logo */
+            text-indent: -9999px; /* Oculta el texto del elemento */
+        }
+        .navbar-nav .nav-link {
+            color: #343a40; /* Color del texto del menú */
+            font-weight: bold; /* Negrita para el texto del menú */
+        }
+        .card {
+            margin-bottom: 20px; /* Espaciado inferior para las tarjetas */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+        }
+        .card-title {
+            color: #007bff; /* Color del título de la tarjeta */
+        }
+        .card-img-top {
+            width: 100%; /* Ancho completo para la imagen de la tarjeta */
+            height: 200px; /* Altura fija para la imagen de la tarjeta */
+            object-fit: cover; /* Escalar la imagen para que se ajuste */
+        }
+        .card-link {
+            color: #007bff; /* Color de los enlaces de la tarjeta */
+        }
+        .titulo-productos {
+            margin-top: 15px; /* Margen superior para el título "Productos Destacados" */
+            margin-bottom: 30px; /* Margen inferior para el título "Productos Destacados" */
+            font-size: 2rem; /* Tamaño de fuente */
+            color: #333; /* Color del texto */
+            font-style: oblique; /* Estilo de Fuente */
+            text-decoration: underline overline; /* Subrayado y Sobrelínea */
+            font-family: 'Arial Black', sans-serif; /* Fuente */
+            text-transform: uppercase; /* Convertir texto a mayúsculas */
+            letter-spacing: 2px; /* Espaciado entre letras */
+        }
+        .card-cerveza {
+            margin-right: 100px; /* Margen horizontal derecho para la tarjeta de cerveza */
+            margin-left: 100px; /* Margen horizontal izquierdo para la tarjeta de cerveza */
+        }
+        .card-fernet {
+            margin-left: 25px; /* Margen izquierdo para la tarjeta de Fernet Branca */
+        }
+        .titulo-tabla {
+            margin-top: 10px; /* Margen inferior para el título de la tabla */
+            margin-bottom: -25px; /* Margen inferior para el título de la tabla */
+            margin-left: 150px; /* Margen izquierdo para el título de la tabla */
+            font-size: 2rem; /* Tamaño de fuente */
+            color: #333; /* Color del texto */
+            font-style: oblique; /* Estilo de Fuente */
+            font-family: 'Helvetica', sans-serif; /* Fuente */
+            font-weight: 700; /* Anchura de las letras */
+            text-decoration: underline; /* Subrayado */
+            text-transform: uppercase; /* Convertir texto a mayúsculas */
+        }
+    </style>
+</head>
+<body>
     <header>
-        <title>{{ title }}</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Venta de productos</title>
-
-
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="./home">SUPERMERCADO DIA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="./productos">Ingresar Productos</a>
-              </div>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./home">SUPERMERCADO DIA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" href="./productos">Ingresar Productos</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </nav>
-    <header>
-          
+    </header>
 
-    <body>
-        Bienvenido  {{ user }}
+    <h2 class="text-center titulo-productos">Productos Destacados</h2>
 
-        <div class="container text-center">
-          <div class="row row-cols-4">
-            <div class="col">
-              <div class="card" style="width: 18rem;">
-                <img src="../resources/ferne.jpg" class="card-img-top" alt="Fernet">
-                <div class="card-body">
-                  <h5 class="card-title">Fernet Branca</h5>
+    <div class="container text-center">
+        <div class="row row-cols-4">
+            <div class="col card-fernet"> <!-- Aplicando la clase card-fernet -->
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Fernet Branca</h5>
+                        <img src="../img/fernet.jpg" class="card-img-top" alt="Fernet Branca" title="Fernet Branca" style="width: 80%;">
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Nombre: Fenet Branca 750ml</li>
+                        <li class="list-group-item">Precio: $10.000</li>
+                        <li class="list-group-item">Cantidad: 50</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">COMPRAR</a>
+                        <a href="#" class="card-link">CANCELAR</a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Fenet Branca 750ml</li>
-                  <li class="list-group-item">Precio: $10.000</li>
-                  <li class="list-group-item">Cantidad: 50</li>
-                </ul>
-                <div class="card-body">
-                  <a href="#" class="card-link">COMPRAR</a>
-                  <a href="#" class="card-link">CANCELAR</a>
-                </div>
-              </div>
             </div>
-
-
-            <div class="col">
-              <div class="card" style="width: 18rem;">
-                <img src="../resources/ferne.jpg" class="card-img-top" alt="Fernet">
-                <div class="card-body">
-                  <h5 class="card-title">Fernet Branca</h5>
+            <div class="col card-cerveza">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Cerveza Brahma</h5>
+                        <img src="../img/brahma.jpg" class="card-img-top" alt="Cerveza Brahma" title="Cerveza Brahma">
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Nombre: Cerveza Brahma</li>
+                        <li class="list-group-item">Precio: $890</li>
+                        <li class="list-group-item">Cantidad: 30</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">COMPRAR</a>
+                        <a href="#" class="card-link">CANCELAR</a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Fenet Branca 750ml</li>
-                  <li class="list-group-item">Precio: $10.000</li>
-                  <li class="list-group-item">Cantidad: 50</li>
-                </ul>
-                <div class="card-body">
-                  <a href="#" class="card-link">COMPRAR</a>
-                  <a href="#" class="card-link">CANCELAR</a>
-                </div>
-              </div>
             </div>
-
-
             <div class="col">
-              <div class="card" style="width: 18rem;">
-                <img src="../resources/ferne.jpg" class="card-img-top" alt="Fernet">
-                <div class="card-body">
-                  <h5 class="card-title">Fernet Branca</h5>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Vodka Smirnoff</h5>
+                        <img src="../img/smirnoff.jpg" class="card-img-top" alt="Vodka Smirnoff" title="Vodka Smirnoff" style="width: 80%;">
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Nombre: Vodka Smirnoff</li>
+                        <li class="list-group-item">Precio: $6000</li>
+                        <li class="list-group-item">Cantidad: 25</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">COMPRAR</a>
+                        <a href="#" class="card-link">CANCELAR</a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Fenet Branca 750ml</li>
-                  <li class="list-group-item">Precio: $10.000</li>
-                  <li class="list-group-item">Cantidad: 50</li>
-                </ul>
-                <div class="card-body">
-                  <a href="#" class="card-link">COMPRAR</a>
-                  <a href="#" class="card-link">CANCELAR</a>
-                </div>
-              </div>
             </div>
+        </div>
+    </div>
 
+    <h2 class="titulo-tabla">Todos los Productos</h2>
 
-
-            <div>
-              <table border="2" class="table">
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
                 <tr>
+<<<<<<< HEAD
                   <td>ID</td>
                   <td>NOMBRE</td>
                   <td>DESCRIPCION</td>
@@ -97,20 +161,29 @@
                   <td>CANTIDAD</td>
                   <td>PRECIO</td>
                   <td>IMAGEN</td>
+=======
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">DESCRIPCION</th>
+                    <th scope="col">CATEGORIA</th>
+                    <th scope="col">CANTIDAD</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">IMAGEN</th>
+>>>>>>> gena
                 </tr>
-
-                
+            </thead>
+            <tbody>
                 {% for i in producto %}
                     <tr>
-                      {%for val in i%}
-                        <td>{{val}}</td>
-                      {% endfor %}
+                        {% for val in i %}
+                            <td>{{ val }}</td>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
-              </table>
-            </div>
+            </tbody>
+        </table>
+    </div>
 
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
