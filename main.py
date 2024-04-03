@@ -55,8 +55,8 @@ def ingresoProd(request,response):
     nombreMax=nombre.upper()
 
     try:
-        while not nombre or descripcion or precio or cantidad:
-            print("no ingreso nombre del producto")
+        #while not nombre or descripcion or precio or cantidad:
+        print("no ingreso nombre del producto")
         
         sql="INSERT INTO producto(nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s)"
         datos=(nombreMax,descripcion,precio,cantidad,categoria,imagen)
