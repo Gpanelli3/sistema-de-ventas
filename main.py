@@ -20,15 +20,14 @@ def home(request,response):
     #cont=0
     for i in cursor:
         productos.append(i)
-        cont+=1
     conexion.close()
     #print(productos)
     #print(cont)
-  
-
 
     response.text= app.template(
         "home.html", context={"title": "Pagina Principal", "user": "a nuestra pagina de productos", "producto":productos})
+  
+
     
    
 
@@ -56,7 +55,7 @@ def ingresoProd(request,response):
     nombreMax=nombre.upper()
 
     try:
-        while not nombre:
+        while not nombre or descripcion or precio or cantidad:
             print("no ingreso nombre del producto")
         
         sql="INSERT INTO producto(nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s)"
