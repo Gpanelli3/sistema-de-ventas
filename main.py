@@ -32,10 +32,23 @@ def home(request,response):
         "productos.html", context={"title": "Pagina Principal", "user": "PRODUCTOS INGRESADOS CORRECTAMENTE"})
    
 
-
 @app.ruta("/ingresoProd")
 def ingresoProd(request,response):
+    #conexion para traer la cantidad de productos
+    conexion2= mysql.connector.connect(host='localhost',
+                                  user='genaro',
+                                  passwd='password',
+                                  database='sistema-ventas')
+    cursor2=conexion2.cursor()
+    cursor2.execute("select producto.idProducto,producto.nombre,producto.descripcion,categorias.nombre,producto.cantidad,producto.precio FROM producto inner join categorias on categorias.idcategorias=id_cat_corresp")
+    cont=0
+    for i in cursor2:
+        cont+=1
+    print(cont)
+    conexion2.close()
 
+
+    #conexion para insertar productos
     conexion= mysql.connector.connect(host='localhost',
                                   user='genaro',
                                   passwd='password',
@@ -43,16 +56,22 @@ def ingresoProd(request,response):
     
     cursor=conexion.cursor()
     
-    #idp=request.POST.get('id')
+    #idp=cont+1
     nombre=request.POST.get('nombre')
     descripcion=request.POST.get('descripcion')
     precio=request.POST.get('precio')
     cantidad=request.POST.get('cantidad')
     categoria=request.POST.get('categoria')
+    imagen=request.POST.get('imagen')
+
+    nombreMax=""
+    nombreMax=nombre.upper()
 
     try:
-        sql="INSERT INTO producto(idProducto,nombre,descripcion,precio,cantidad,id_cat_corresp) VALUES(%s,%s,%s,%s,%s,%s)"
-        datos=(nombre,descripcion,precio,cantidad,categoria)
+        
+        sql="INSERT INTO producto(nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s)"
+        datos=(nombreMax,descripcion,precio,cantidad,categoria,imagen)
+            
         
         cursor.execute(sql,datos)
         conexion.commit()
@@ -61,8 +80,8 @@ def ingresoProd(request,response):
     except mysql.connector.Error as error:
         print("error al actualizar en la base de datos", error)
 
+        conexion.close()
 
-    conexion.close()
     
 
 
