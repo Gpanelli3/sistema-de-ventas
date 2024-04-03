@@ -42,7 +42,7 @@ def ingresoProd(request,response):
                                   database='sistema-ventas')
     cursor2=conexion2.cursor()
     cursor2.execute("select producto.idProducto,producto.nombre,producto.descripcion,categorias.nombre,producto.cantidad,producto.precio FROM producto inner join categorias on categorias.idcategorias=id_cat_corresp")
-    cont=0
+    cont=1
     for i in cursor2:
         cont+=1
     print(cont)
