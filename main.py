@@ -9,14 +9,6 @@ import os #para las direcciones de los archivos
 #template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 #env = Environment(loader=FileSystemLoader(template_dir))
 
-conexion1 = mysql.connector.connect(
-    host="localhost",
-    user="genaro",
-    passwd="password",
-    database="sistema-ventas"
-)
-
-cursor1 = conexion1.cursor()
 
 app=Wsgiclass()
 #waitress-serve --listen=*:8000 main:app
@@ -48,6 +40,13 @@ def home(request,response):
 @app.ruta("/ingresoProd")
 def ingresoProd(request,response):
 
+
+    #def convertir_a_binario(foto):
+       # with open(foto, 'rb') as f:
+          #  blob = f.read()
+    
+        #return blob
+
     #conexion para insertar productos
     conexion= mysql.connector.connect(host='localhost',
                                   user='genaro',
@@ -67,6 +66,8 @@ def ingresoProd(request,response):
     nombreMax=""
     nombreMax=nombre.upper()
 
+    #imagbin=convertir_a_binario('')
+
         
     sql="INSERT INTO producto(nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s)"
     datos=(nombreMax,descripcion,precio,cantidad,categoria,imagen)
@@ -81,6 +82,11 @@ def ingresoProd(request,response):
             "error.html", context={"user": "ERROR EN LA BASE DE DATOS"}
         )
     conexion.close()
+
+
+
+    
+
 
     response.text= app.template(
         "ingresoProd.html", context={"user": "PRODUCTOS INGRESADOS CORRECTAMENTE"})
@@ -110,7 +116,7 @@ def actualizar_precio(request, response):
                                        database='sistema-ventas')
     cursor = conexion.cursor()
 
-
+    nombrep=request.GET.get('nom')
     idProducto = request.POST.get('idp')
     nuevoPrecio = request.POST.get('precio')
 
@@ -128,8 +134,23 @@ def actualizar_precio(request, response):
     finally:
         conexion.close()
 
+
+    #conexion para traer los productos
+    conexion= mysql.connector.connect(host='localhost',
+                                  user='genaro',
+                                  passwd='password',
+                                  database='sistema-ventas')
+    cursor=conexion.cursor()
+    cursor.execute("select producto.idProducto,producto.nombre,producto.descripcion,categorias.nombre,producto.cantidad,producto.precio from producto inner join categorias on categorias.idcategorias=id_cat_corresp")
+
+    productos=[]
+    #cont=0
+    for i in cursor:
+        productos.append(i)
+    conexion.close()
+
     response.text= app.template(
-        "update.html", context={"title": "Pagina Principal", "user": "PRODUCTOS INGRESADOS CORRECTAMENTE"})
+        "update.html", context={"title": "Pagina Principal", "user": "PRODUCTOS INGRESADOS CORRECTAMENTE","producto":productos})
     
 
 
