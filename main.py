@@ -55,20 +55,22 @@ def ingresoProd(request,response):
     nombreMax=nombre.upper()
 
     try:
-        #while not nombre or descripcion or precio or cantidad:
-        print("no ingreso nombre del producto")
-        
+        #if not nombre== '' or descripcion== '' or precio==0 or cantidad == 0:
+        #    print("no ingreso nombre del producto", error)
+
+        #else:
         sql="INSERT INTO producto(nombre,descripcion,precio,cantidad,id_cat_corresp, imagen) VALUES(%s,%s,%s,%s,%s,%s)"
         datos=(nombreMax,descripcion,precio,cantidad,categoria,imagen)
-            
         
         cursor.execute(sql,datos)
         conexion.commit()
-
+            
     except mysql.connector.Error as error:
+        
         response.text=app.template(
             "error.html", context={"user": "ERROR EN LA BASE DE DATOS"}
         )
+
 
     conexion.close()
 
