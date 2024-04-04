@@ -1,13 +1,13 @@
 from app import Wsgiclass
-from whitenoise import WhiteNoise
+#from whitenoise import WhiteNoise
 from jinja2 import Environment, FileSystemLoader #para poder recorrer/cargar/acceder = gestionar a las plantillas
 import mysql.connector 
 from webob import Request, Response
 from wsgiref.simple_server import make_server
 import os #para las direcciones de los archivos
 
-template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-env = Environment(loader=FileSystemLoader(template_dir))
+#template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+#env = Environment(loader=FileSystemLoader(template_dir))
 
 conexion1 = mysql.connector.connect(
     host="localhost",
@@ -45,14 +45,8 @@ def home(request,response):
   
 
     
-   
-
 @app.ruta("/ingresoProd")
 def ingresoProd(request,response):
-
-
-    
-
 
     #conexion para insertar productos
     conexion= mysql.connector.connect(host='localhost',
@@ -88,11 +82,11 @@ def ingresoProd(request,response):
         )
     conexion.close()
 
-
-
-
     response.text= app.template(
         "ingresoProd.html", context={"user": "PRODUCTOS INGRESADOS CORRECTAMENTE"})
+
+
+
 
     
 
@@ -141,37 +135,3 @@ def actualizar_precio(request, response):
 
 
 
-@app.ruta("/categ")
-def select(request, response):
-    id = request.POST.get('pc')
-    
-    cursor1.execute ("SELECT * FROM producto WHERE id_cat_corresp = %s ;" , (id,))
-    
-    resultados = cursor1.fetchall()
-    
-
-    template= env.get_template('seleccionado.html')
-    rendered_html = template.render(resultados=resultados)
-    response=Response()
-    response.text = rendered_html
-    return response
-
-
-
-def listabebidas():
-    try:
-        cursor1.execute("SELECT * FROM categorias;")
-        lista = cursor1.fetchall()
-        env.globals["categoria"] = lista
-    except Exception as e:
-        print("Error MySQL:", str(e))
-
-def listaproductos():
-    try:
-        cursor1.execute("select producto.idProducto,producto.nombre,producto.descripcion,categorias.nombre,producto.cantidad,producto.precio from producto inner join categorias on categorias.idcategorias=id_cat_corresp;")
-        resultados = cursor1.fetchall()
-        env.globals["producto"] = resultados
-    except Exception as e:
-        print("Error MySQL:", str(e))
-
-app=WhiteNoise(app, root='static/')

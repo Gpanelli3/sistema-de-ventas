@@ -72,48 +72,31 @@
     </style>
 </head>
 <body>
+    
     <header>
-        
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-
             <div class="container-fluid">
-                <div class="btn-menu">
-                    <a><img src="foto1.jpg" alt="Logo" width="40" height="28" class="p"></a>
+                <div >
+                    <a><img src="https://na.leafletscdns.com/com.ar/data/6/logo.png?0674196497436a8d06d82c0b388fafb6" alt="Logo" width="40" height="28" class="p"></a>
                 </div>
-                <a class="navbar-brand" href="/home">SUPERMERCADO DIA</a>
+                    
+
+                <a class="navbar-brand" href="./home">SUPERMERCADO DIA</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="row-cols-2" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="/productos">Ingresar Productos</a>
+                        <a class="nav-link active" aria-current="page" href="./home">Home</a>
+                        <a class="nav-link" href="./productos">Ingresar Productos</a>
+                        <a class="nav-link" href="./update">Actualizar Productos</a>
                     </div>
-                </div>
+                </div class="DEBAJO NAV RAMA">
+            </nav>
+        </header>
 
-                <div class="container mt-4">
-                    <div class="categorias-wrapper">
-                        <div class="categorias-lista">
-                            <form method='POST' action="/categ">
-                                <div class="col-2" style="font-family: Arial, Helvetica, sans-serif;">
-                                    <select class="form-select" name="pc" id="pc" style="margin-left: 710px; border-color: black; border-radius: 20px; " required>
-                                        <option value="" selected disabled style="background-color: rgb(157, 217, 245);" >Categorias</option>
-                                        {% for x in categoria %}
-                                        <option value="{{x[0]}}">{{x[1] }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            
-                                </div>
-                        
-                                    <button type="submit" class="btn btn-primary" style="margin-left: 890px; margin-top: -65px; font-size: 13px;" >Seleccionar</button>
-                        
-                                </div>
-                            </form>
 
-            </div>
-        </nav>
-    </header>
+        
 
     <h2 class="text-center titulo-productos">Productos Destacados</h2>
 
@@ -123,7 +106,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Fernet Branca</h5>
-                        <img src="../img/fernet.jpg" class="card-img-top" alt="Fernet Branca" title="Fernet Branca" style="width: 80%;">
+                        <img src="https://acdn.mitiendanube.com/stores/835/701/products/fernet-branca-aperitivo-1000-ml1-f361be27b92a8c5e0b16661028118789-640-0.jpg" class="card-img-top" alt="Fernet Branca" title="Fernet Branca" style="width: 80%;">
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Nombre: Fenet Branca 750ml</li>
@@ -140,7 +123,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Cerveza Brahma</h5>
-                        <img src="../img/brahma.jpg" class="card-img-top" alt="Cerveza Brahma" title="Cerveza Brahma">
+                        <img src="https://mayoristajmc.com//images/products/63f8d383d2507077c91345082.png" class="card-img-top" alt="Cerveza Brahma" title="Cerveza Brahma">
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Nombre: Cerveza Brahma</li>
@@ -157,7 +140,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Vodka Smirnoff</h5>
-                        <img src="../img/smirnoff.jpg" class="card-img-top" alt="Vodka Smirnoff" title="Vodka Smirnoff" style="width: 80%;">
+                        <img src="https://acdn.mitiendanube.com/stores/001/069/568/products/vodka-smirnoff-red-red1-5270f2fc38bfbf6a5d16190262750746-1024-1024.jpg" class="card-img-top" alt="Vodka Smirnoff" title="Vodka Smirnoff" style="width: 80%;">
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Nombre: Vodka Smirnoff</li>
