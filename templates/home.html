@@ -8,11 +8,11 @@
     <style>
         /* Estilos personalizados */
         body {
-            background-color: #e9e6ac; /* Color de fondo */
+            background-color: #e9e483; /* Color de fondo */
             font-family: Arial, sans-serif; /* Fuente del texto */
         }
         .navbar-brand {
-            background-image: url('../img/dialogo.png'); /* Ruta a la imagen del logo */
+            background-image: url('../static/foto1.jpg'); /* Ruta a la imagen del logo */
             background-repeat: no-repeat; /* No se repite la imagen */
             background-size: contain; /* La imagen se ajusta al tamaño del contenedor */
             background-position: center; /* La imagen se posiciona centrada */
@@ -73,19 +73,44 @@
 </head>
 <body>
     <header>
+        
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
             <div class="container-fluid">
-                <a class="navbar-brand" href="./home">SUPERMERCADO DIA</a>
+                <div class="btn-menu">
+                    <a><img src="foto1.jpg" alt="Logo" width="40" height="28" class="p"></a>
+                </div>
+                <a class="navbar-brand" href="/home">SUPERMERCADO DIA</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="row-cols-2" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="./productos">Ingresar Productos</a>
-                        <a class="nav-link" href="./update">Actualizar Productos</a>
+                        <a class="nav-link" href="/productos">Ingresar Productos</a>
                     </div>
                 </div>
+
+                <div class="container mt-4">
+                    <div class="categorias-wrapper">
+                        <div class="categorias-lista">
+                            <form method='POST' action="/categ">
+                                <div class="col-2" style="font-family: Arial, Helvetica, sans-serif;">
+                                    <select class="form-select" name="pc" id="pc" style="margin-left: 710px; border-color: black; border-radius: 20px; " required>
+                                        <option value="" selected disabled style="background-color: rgb(157, 217, 245);" >Categorias</option>
+                                        {% for x in categoria %}
+                                        <option value="{{x[0]}}">{{x[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            
+                                </div>
+                        
+                                    <button type="submit" class="btn btn-primary" style="margin-left: 890px; margin-top: -65px; font-size: 13px;" >Seleccionar</button>
+                        
+                                </div>
+                            </form>
+
             </div>
         </nav>
     </header>
@@ -98,7 +123,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Fernet Branca</h5>
-                        <img src="https://acdn.mitiendanube.com/stores/835/701/products/fernet-branca-aperitivo-1000-ml1-f361be27b92a8c5e0b16661028118789-640-0.jpg" class="card-img-top" alt="Fernet Branca" title="Fernet Branca" style="width: 80%;">
+                        <img src="../img/fernet.jpg" class="card-img-top" alt="Fernet Branca" title="Fernet Branca" style="width: 80%;">
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Nombre: Fenet Branca 750ml</li>
@@ -115,7 +140,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Cerveza Brahma</h5>
-                        <img src="https://mayoristajmc.com//images/products/63f8d383d2507077c91345082.png" class="card-img-top" alt="Cerveza Brahma" title="Cerveza Brahma">
+                        <img src="../img/brahma.jpg" class="card-img-top" alt="Cerveza Brahma" title="Cerveza Brahma">
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Nombre: Cerveza Brahma</li>
@@ -132,7 +157,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Vodka Smirnoff</h5>
-                        <img src="https://acdn.mitiendanube.com/stores/871/106/products/vodka-smirnoff1-11d292c21c224c9b9f16002812336502-640-0.png" class="card-img-top" alt="Vodka Smirnoff" title="Vodka Smirnoff" style="width: 80%;">
+                        <img src="../img/smirnoff.jpg" class="card-img-top" alt="Vodka Smirnoff" title="Vodka Smirnoff" style="width: 80%;">
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Nombre: Vodka Smirnoff</li>
@@ -160,7 +185,6 @@
                     <th scope="col">CATEGORIA</th>
                     <th scope="col">CANTIDAD</th>
                     <th scope="col">PRECIO</th>
-                    <th scope="col">IMAGEN</th>
                 </tr>
             </thead>
             <tbody>
