@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Libretas Digitales</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        body {
+            background-color: #e9e483; /* Color de fondo */
+            font-family: Arial, sans-serif; /* Fuente del texto */
+        }
+        .navbar {
+            background-color: white; /* Color de la barra de navegación */
+        }
+        .navbar-brand {
+            background-image: url('img/dialogo.png'); /* Ruta a la imagen del logo */
+            background-repeat: no-repeat; /* No se repite la imagen */
+            background-size: contain; /* La imagen se ajusta al tamaño del contenedor */
+            background-position: center; /* La imagen se posiciona centrada */
+            height: 50px; /* Altura del área del logo */
+            width: 150px; /* Anchura del área del logo */
+            text-indent: -9999px; /* Oculta el texto del elemento */
+            font-size: 27px;
+        }
+        .navbar-nav .nav-link {
+            color: #343a40; /* Color del texto del menú */
+            font-weight: bold; /* Negrita para el texto del menú */
+            font-size: 20px;
+            font-family: Arial;
+        }
+        .titulo-tabla {
+            margin-top: 10px; /* Margen superior para el título de la tabla */
+            margin-bottom: -25px; /* Margen inferior para el título de la tabla */
+            margin-left: 150px; /* Margen izquierdo para el título de la tabla */
+            font-size: 2rem; /* Tamaño de fuente */
+            color: #333; /* Color del texto */
+            font-style: oblique; /* Estilo de Fuente */
+            font-family: 'Helvetica', sans-serif; /* Fuente */
+            font-weight: 700; /* Anchura de las letras */
+            text-decoration: underline; /* Subrayado */
+            text-transform: uppercase; /* Convertir texto a mayúsculas */
+        }
+        /* Estilo para el enlace "Volver al Inicio" */
+        .back-to-home {
+            color: black; /* Color del texto */
+            font-size: 20px; /* Tamaño de fuente */
+            font-family: Arial, sans-serif; /* Fuente */
+            text-decoration: none; /* Quitar decoración de enlace */
+            transition: all 0.3s ease-in-out; /* Transición suave */
+            display: inline-block; /* Mostrar como bloque en línea */
+            border-bottom: 2px solid transparent; /* Subrayado transparente */
+        }
+        /* Estilo para el efecto de subrayado al pasar el cursor */
+        .back-to-home:hover {
+            border-color: #000; /* Color del subrayado al pasar el cursor */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="btn-menu">
+                    <a><img src="foto1.jpg" alt="Logo" width="160" height="100" class="p"></a>
+                </div>
+                <a class="navbar-brand">SUPERMERCADO DIA</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class='container-fluid row'>
+        <h2 class="titulo-tabla">Productos seleccionados:</h2>
+
+        <div class="container mt-5" style="background-color: brown;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">CATEGORIA</th>
+                        <th scope="col">CANTIDAD</th>
+                        <th scope="col">PRECIO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in resultados %}
+                        <tr>
+                            {% for val in i %}
+                                <td>{{ val }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <a href="/" class="back-to-home">Volver al Inicio</a>
+
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm' crossorigin='anonymous'></script>
+</body>
+</html>
