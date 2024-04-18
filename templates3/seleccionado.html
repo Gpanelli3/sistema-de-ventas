@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos seleccionados</title>
+    <link rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4b7878dea0.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Estilo para la barra de navegación */
+        .navbar {
+            background-color: #e71717; /* Color de fondo */
+            padding: 10px 0; /* Espaciado interior */
+            border-bottom: 2px solid #ffffff; /* Borde inferior */
+        }
+
+        /* Estilo para los enlaces de la barra de navegación */
+        .navbar .nav-link {
+            color: #ffffff !important; /* Color del texto */
+            margin-right: 20px; /* Margen derecho */
+        }
+
+        /* Estilo para el logo */
+        .navbar img {
+            max-width: 100px; /* Ancho máximo */
+            height: auto; /* Altura automática */
+        }
+
+        /* Estilo para el contenedor de elementos en la derecha */
+        .ml-auto-container {
+            margin-left: auto !important; /* Mover el contenido hacia la derecha */
+        }
+
+        /* Estilo para el contenedor del menú desplegable */
+        .categorias-container {
+            display: flex; /* Usar flexbox */
+            align-items: center; /* Alinear verticalmente */
+        }
+
+        /* Estilo para el margen entre elementos */
+        .mr-3 {
+            margin-right: -40px !important; /* Añadir margen derecho */
+        }
+
+        /* Estilo para el margen inferior del menú desplegable */
+        .categorias-wrapper {
+            margin-top: -25px;
+            margin-bottom: 0px; /* Margen inferior */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div>
+                    <a><img src="https://brand-partners.com.ar/wp-content/uploads/2021/02/Logo-DIA-Fondo-Rojo-1536x666.jpg" alt="Logo" class="p"></a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                      <a class="nav-link active" aria-current="page" href="/">Home</a>
+                      <a class="nav-link" href="./agregarProd">Ingresar Productos</a>
+                      <a class="nav-link" href="./update">Actualizar Productos</a>
+                    </div>
+                </div>
+                <div class="ml-auto-container"> <!-- Mover los elementos a la derecha -->
+                    <div class="categorias-container">
+                        <div class="categorias-wrapper">
+                            <div class="container mt-4 mr-3">
+                                <div class="categorias-lista">
+                                    <form method='POST' action="/categ">
+                                        <div class="col-2" style="font-family: Arial, Helvetica, sans-serif;">
+                                            <select class="form-select" name="pc" id="pc" style="border-color: black; border-radius: 20px; " required> <!-- Eliminar margen izquierdo -->
+                                                <option value="" selected disabled style="background-color: rgb(157, 217, 245);" >Categorias</option>
+                                                {% for x in categorias %}
+                                                <option value="{{x[0]}}">{{x[1] }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <br>
+    <div class='container-fluid row'>
+        <h2 class="titulo-tabla">Productos seleccionados:</h2>
+
+        <div class="container mt-5">
+            <table class="table">
+                <thead>
+                    <tr >
+                        <th scope="col">ID</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">CATEGORIA</th>
+                        <th scope="col">CANTIDAD</th>
+                        <th scope="col">PRECIO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in resultados %}
+                        <tr>
+                            {% for val in i %}
+                                <td>{{ val }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <a href="/" class="category notloaded with_children collapsed" style="color: black; font-size: 20px; font-family: Arial;"> Volver al Inicio</a>
+
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm' crossorigin='anonymous'></script>
+</body>
+</html>
